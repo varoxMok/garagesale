@@ -4,6 +4,7 @@ const mobileMenu = document.querySelector('.mobile-menu')
 const menuHamIcon = document.querySelector('.menu')
 const menuCartIcon = document.querySelector('.navbar-shopping-cart')
 const aside = document.querySelector('.product-detail')
+const cardsContainer = document.querySelector('.cards-container')
 
 menuEmail.addEventListener('click', toggleDesktopMenu)
 menuHamIcon.addEventListener('click', toggleMobileMenu)
@@ -36,3 +37,54 @@ function toggleAsideCart() {
     }
     aside.classList.toggle('inactive')
 }
+
+const productList = []
+productList.push({
+    name: 'Bike 1',
+    price: 80,
+    image: 'https://images.squarespace-cdn.com/content/v1/535d346fe4b03ecd54f1fd25/1650034332160-CBURXWI9OWV3MRZ96DMM/Adam-Sklar-and-His-Super-Something-Gravel-Bike-1.jpeg?format=1000w'
+})
+productList.push({
+    name: 'Bike 2',
+    price: 100,
+    image: 'https://images.squarespace-cdn.com/content/v1/535d346fe4b03ecd54f1fd25/1650034332160-CBURXWI9OWV3MRZ96DMM/Adam-Sklar-and-His-Super-Something-Gravel-Bike-1.jpeg?format=1000w'
+})
+productList.push({
+    name: 'Bike 3',
+    price: 70,
+    image: 'https://images.squarespace-cdn.com/content/v1/535d346fe4b03ecd54f1fd25/1650034332160-CBURXWI9OWV3MRZ96DMM/Adam-Sklar-and-His-Super-Something-Gravel-Bike-1.jpeg?format=1000w'
+})
+productList.push({
+    name: 'Bike 4',
+    price: 90,
+    image: 'https://images.squarespace-cdn.com/content/v1/535d346fe4b03ecd54f1fd25/1650034332160-CBURXWI9OWV3MRZ96DMM/Adam-Sklar-and-His-Super-Something-Gravel-Bike-1.jpeg?format=1000w'
+})
+
+function renderProducts (array) {
+    for (product of array) {
+        const productCard = document.createElement('div')
+        productCard.classList.add('product-card')
+        const productImg = document.createElement('img')
+        productImg.setAttribute('src', product.image)
+        const productInfo = document.createElement('div')
+        productInfo.classList.add('product-info')
+        const productInfoDiv = document.createElement('div')
+        const productPrice = document.createElement('p')
+        productPrice.innerText = '$ ' + product.price
+        const productName = document.createElement('p')
+        productName.innerText = product.name
+        const productFigure = document.createElement('figure')
+        const productImgCart = document.createElement('img')
+        productImgCart.setAttribute('src', './assets/icons/bt_add_to_cart.svg')
+        productInfoDiv.appendChild(productPrice)
+        productInfoDiv.appendChild(productName)
+        productFigure.appendChild(productImgCart)
+        productInfo.appendChild(productInfoDiv)
+        productInfo.appendChild(productFigure)
+        productCard.appendChild(productImg)
+        productCard.appendChild(productInfo)
+        cardsContainer.appendChild(productCard)
+    }
+}
+
+renderProducts (productList)
